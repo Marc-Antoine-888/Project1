@@ -40,3 +40,29 @@ public class Main {
     }
 
 }
+
+public class Jeux implements Serializable {
+    private String nom;
+    private String categorie;
+    private int annee;
+
+    public Jeux(String nom, String categorie, int annee) {
+        this.nom = nom;
+        this.categorie = categorie;
+        this.annee = annee;
+    }
+
+    private int age(int annee){
+        int age = Year.now().getValue() - annee;
+        return age;
+    }
+
+    @Override
+    public String toString() {
+        return  nom +
+                ", " + categorie +
+                ", année de sortie " + annee +
+                ", " + age(annee) + " ans";
+    }
+
+}

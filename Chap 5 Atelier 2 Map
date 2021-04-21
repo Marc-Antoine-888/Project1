@@ -1,0 +1,47 @@
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Livre l1 = new Livre("Blockchain", "Laurent Leloup");
+        l1.addChapitre("1 Le blockchain c'est quoi?", 25);
+        l1.addChapitre("2 Le blockchain aujourd'hui", 50);
+        l1.addChapitre("3 Le blockchain demain", 22);
+
+        Livre l2 = new Livre("Player one", "Ernest Cline");
+        l2.addChapitre("0010", 11);
+        l2.addChapitre("0006", 10);
+        l2.addChapitre("0007", 33);
+        l2.addChapitre("0004", 27);
+
+        System.out.println(l1.toString());
+        System.out.println("\n" + l2.toString());
+    }
+
+}
+
+public class Livre {
+    private String titre;
+    private String auteur;
+    private LinkedHashMap<String,Integer> chapitre;
+
+    public Livre(String titre, String auteur) {
+        this.titre = titre;
+        this.auteur = auteur;
+        this.chapitre = new LinkedHashMap<>();
+    }
+
+    public void addChapitre(String nom, int nbPage){
+        chapitre.put(nom, nbPage);
+    }
+
+    public String toString() {
+        String unLivre;
+        unLivre = titre + " de " + auteur;
+        for (String key: chapitre.keySet()) {
+            unLivre += "\nchapitre " + key + ", " + (chapitre.get(key)) + " pages";
+        }
+        return unLivre;
+    }
+
+}

@@ -58,3 +58,61 @@ public class Main extends JFrame {
     }
 
 }
+
+public class Main2 extends JDialog {
+    JDialog dialog;
+    JLabel labNom;
+    JDateChooser dateChooser;
+    JButton btnOK;
+    JButton btnAnnuler;
+    boolean isOk = false;
+
+    public Main2(String nom) {
+        dialog = new JDialog((JDialog) null, "Info", true);
+        dialog.setSize(350, 200);
+        dialog.setLocationRelativeTo(null);
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        dialog.setLayout(new FlowLayout());
+
+        labNom = new JLabel(nom + " entrez votre date de naissance");
+
+        dateChooser = new JDateChooser(new Date());
+        dateChooser.setPreferredSize(new Dimension(300, 30));
+
+        btnOK = new JButton("OK");
+        btnOK.addActionListener(e -> btnOKAction());
+
+        btnAnnuler = new JButton("Annuler");
+        btnAnnuler.addActionListener(e -> btnAnnulerAction());
+
+        dialog.add(labNom);
+        dialog.add(dateChooser);
+        dialog.add(btnOK);
+        dialog.add(btnAnnuler);
+
+        dialog.setVisible(true);
+    }
+
+    private void btnAnnulerAction() {
+        isOk = false;
+        dialog.dispose();
+    }
+
+    private void btnOKAction() {
+        isOk = true;
+        dialog.dispose();
+    }
+
+    public boolean getisOK() {
+        return isOk;
+    }
+
+    public Date getDateNaissance() {
+        return dateChooser.getDate();
+    }
+
+    public static void main(String[] args) {
+        com.company.Main main2 = new com.company.Main();
+    }
+
+}
